@@ -2,7 +2,7 @@ package settings
 
 import (
 	"context"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
 )
 
 // NewSettingResource creates a new base setting resource

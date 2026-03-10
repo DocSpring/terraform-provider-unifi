@@ -5,7 +5,7 @@ import (
 	"errors"
 
 	"github.com/filipowm/go-unifi/unifi"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )

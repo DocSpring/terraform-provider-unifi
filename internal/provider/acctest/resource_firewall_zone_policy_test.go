@@ -7,7 +7,7 @@ import (
 	"sync"
 	"testing"
 
-	pt "github.com/filipowm/terraform-provider-unifi/internal/provider/testing"
+	pt "github.com/DocSpring/terraform-provider-unifi/internal/provider/testing"
 	"github.com/hashicorp/terraform-plugin-testing/helper/acctest"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/plancheck"
@@ -1182,6 +1182,68 @@ resource "unifi_firewall_zone_policy" "test" {
 		time_all_day = false
 		time_from = "10:00"
 		time_to = "16:00"
+	}
+}
+`, name)
+}
+
+// TestAccFirewallZonePolicy_indexConsistency tests that the index field remains consistent
+// across apply operations when not explicitly set by the user.
+// This test reproduces the bug where the provider produces inconsistent index values.
+func TestAccFirewallZonePolicy_indexConsistency(t *testing.T) {
+	pt.SkipIfEnvLocalMissing(t, "Skipping, because test environment does not support firewall zones yet")
+	name := acctest.RandomWithPrefix("tfacc-zone-policy-index")
+	subnet, vlanId := pt.GetTestVLAN(t)
+
+	AcceptanceTest(t, AcceptanceTestCase{
+		VersionConstraint: ">= 9.0.0",
+		Lock:              firewallZonePolicyLock,
+		Steps: []resource.TestStep{
+			{
+				Config: pt.ComposeConfig(
+					testAccFirewallZonePolicyPreConfig(name, subnet.String(), vlanId),
+					testAccFirewallZonePolicyIndexConsistencyConfig(name),
+				),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet(testFirewallZonePolicyResourceName, "id"),
+					resource.TestCheckResourceAttr(testFirewallZonePolicyResourceName, "name", name),
+					resource.TestCheckResourceAttrSet(testFirewallZonePolicyResourceName, "index"),
+				),
+			},
+			{
+				// Apply again without changes - should not show index drift
+				Config: pt.ComposeConfig(
+					testAccFirewallZonePolicyPreConfig(name, subnet.String(), vlanId),
+					testAccFirewallZonePolicyIndexConsistencyConfig(name),
+				),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet(testFirewallZonePolicyResourceName, "id"),
+					resource.TestCheckResourceAttr(testFirewallZonePolicyResourceName, "name", name),
+				),
+				// Expect no changes - index should be stable
+				ConfigPlanChecks: pt.CheckResourceActions(testFirewallZonePolicyResourceName, plancheck.ResourceActionNoop),
+			},
+		},
+		CheckDestroy: testAccCheckFirewallZonePolicyDestroy,
+	})
+}
+
+func testAccFirewallZonePolicyIndexConsistencyConfig(name string) string {
+	return fmt.Sprintf(`
+resource "unifi_firewall_zone_policy" "test" {
+	name     = %[1]q
+	action   = "ALLOW"
+	protocol = "all"
+	
+	# Don't specify index - let provider/controller assign it
+	# This should trigger the bug where index is inconsistent
+	
+	source = {
+		zone_id = unifi_firewall_zone.test.id
+	}
+	
+	destination = {
+		zone_id = unifi_firewall_zone.test.id
 	}
 }
 `, name)

@@ -1,9 +1,9 @@
-package main // import "github.com/filipowm/terraform-provider-unifi"
+package main // import "github.com/DocSpring/terraform-provider-unifi"
 
 import (
 	"context"
 	"flag"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov5"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
@@ -63,7 +63,7 @@ func main() {
 	log.SetFlags(log.Flags() &^ (log.Ldate | log.Ltime))
 
 	err = tf6server.Serve(
-		"registry.terraform.io/filipowm/unifi",
+		"registry.terraform.io/DocSpring/unifi",
 		muxServer.ProviderServer,
 		serveOpts...,
 	)

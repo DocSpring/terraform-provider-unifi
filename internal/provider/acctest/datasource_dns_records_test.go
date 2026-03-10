@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
-	pt "github.com/filipowm/terraform-provider-unifi/internal/provider/testing"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
+	pt "github.com/DocSpring/terraform-provider-unifi/internal/provider/testing"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
 

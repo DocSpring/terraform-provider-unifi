@@ -2,7 +2,7 @@ package acctest
 
 import (
 	"fmt"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
 	"github.com/hashicorp/go-version"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"testing"

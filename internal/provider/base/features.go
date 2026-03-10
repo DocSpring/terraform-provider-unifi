@@ -3,7 +3,7 @@ package base
 import (
 	"context"
 	"fmt"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/types"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/types"
 	"strings"
 	"sync"
 

@@ -3,7 +3,7 @@ package validators
 import (
 	"context"
 	"fmt"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/types"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/types"
 	"net/url"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"

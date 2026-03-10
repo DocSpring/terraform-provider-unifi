@@ -6,7 +6,7 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"net/http"

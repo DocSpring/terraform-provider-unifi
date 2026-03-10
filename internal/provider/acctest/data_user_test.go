@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/filipowm/go-unifi/unifi"
-	pt "github.com/filipowm/terraform-provider-unifi/internal/provider/testing"
+	pt "github.com/DocSpring/terraform-provider-unifi/internal/provider/testing"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
 

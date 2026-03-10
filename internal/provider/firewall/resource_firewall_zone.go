@@ -3,11 +3,11 @@ package firewall
 import (
 	"context"
 	"github.com/filipowm/go-unifi/unifi/features"
-	ut "github.com/filipowm/terraform-provider-unifi/internal/provider/types"
+	ut "github.com/DocSpring/terraform-provider-unifi/internal/provider/types"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 
 	"github.com/filipowm/go-unifi/unifi"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"

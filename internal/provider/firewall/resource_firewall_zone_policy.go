@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"github.com/filipowm/go-unifi/unifi"
 	"github.com/filipowm/go-unifi/unifi/features"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
-	ut "github.com/filipowm/terraform-provider-unifi/internal/provider/types"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/utils"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/validators"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
+	ut "github.com/DocSpring/terraform-provider-unifi/internal/provider/types"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/utils"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/validators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int32validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
@@ -20,6 +20,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64default"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/int64planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -639,6 +640,9 @@ func (r *firewallZonePolicyResource) Schema(ctx context.Context, _ resource.Sche
 				Optional:            true,
 				Computed:            true,
 				Default:             int64default.StaticInt64(10000),
+				PlanModifiers: []planmodifier.Int64{
+					int64planmodifier.UseStateForUnknown(),
+				},
 				Validators: []validator.Int64{
 					int64validator.AtLeast(0),
 				},

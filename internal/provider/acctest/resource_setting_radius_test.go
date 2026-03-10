@@ -1,7 +1,7 @@
 package acctest
 
 import (
-	pt "github.com/filipowm/terraform-provider-unifi/internal/provider/testing"
+	pt "github.com/DocSpring/terraform-provider-unifi/internal/provider/testing"
 	"sync"
 	"testing"
 

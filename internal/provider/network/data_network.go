@@ -2,9 +2,9 @@ package network
 
 import (
 	"context"
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/utils"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/utils"
 
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )

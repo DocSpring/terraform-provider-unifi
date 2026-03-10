@@ -5,7 +5,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"testing"
 
-	"github.com/filipowm/terraform-provider-unifi/internal/provider/base"
+	"github.com/DocSpring/terraform-provider-unifi/internal/provider/base"
 	"github.com/stretchr/testify/assert"
 )
 
